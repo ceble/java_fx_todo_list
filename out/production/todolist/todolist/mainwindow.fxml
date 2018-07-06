@@ -12,7 +12,7 @@
 <BorderPane fx:controller="todolist.Controller"
             xmlns:fx="http://javafx.com/fxml">
     <left>
-        <ListView fx:id="todoListView">
+        <ListView fx:id="todoListView" onMouseClicked="#handleItemClick">
         </ListView>
     </left>
     <center>
@@ -20,7 +20,14 @@
             <TextArea fx:id="itemDetailsTextArea" VBox.vgrow="ALWAYS"/>
             <HBox>
                 <Label text="Due: " style="-fx-background-color: white">
-                    <font><Font name="Times New Roman bold" size="20" /> </font>
+                    <font>
+                        <Font name="Times New Roman bold" size="20"/>
+                    </font>
+                </Label>
+                <Label fx:id="deadlineLabel">
+                    <font>
+                        <Font name="Times New Roman bold" size="20" />
+                    </font>
                 </Label>
             </HBox>
         </VBox>
