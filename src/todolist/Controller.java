@@ -17,7 +17,7 @@ public class Controller {
     private List<TodoItem> todoItems;
 
     @FXML
-    private ListView todoListView;
+    private ListView<TodoItem> todoListView;
     @FXML
     private TextArea itemDetailsTextArea;
     @FXML
@@ -40,7 +40,7 @@ public class Controller {
 
     @FXML
     public void handleItemClick(){
-        TodoItem item = (TodoItem) todoListView.getSelectionModel().getSelectedItem();
+        TodoItem item = todoListView.getSelectionModel().getSelectedItem();
 
         itemDetailsTextArea.setText(item.getDetails());
 
