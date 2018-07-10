@@ -52,7 +52,6 @@ public class Controller {
         todoListView.getSelectionModel().selectFirst();
 
     }
-<<<<<<< HEAD
 
     @FXML
     public void handleItemClick(){
@@ -65,7 +64,7 @@ public class Controller {
 
 
     }
-=======
+
 //
 //    @FXML
 //    public void handleItemClick(){
@@ -76,7 +75,7 @@ public class Controller {
 //        deadlineLabel.setText(item.getDeadLine().toString());
 //
 //    }
->>>>>>> b7b7ddb1420f28baebab8cca10730956f1e3e138
+
 
 
 }
