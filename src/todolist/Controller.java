@@ -47,6 +47,8 @@ public class Controller {
 
         deadlineLabel.setText(item.getDeadLine().toString());
 
+
+
     }
 
 
