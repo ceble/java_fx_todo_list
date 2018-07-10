@@ -1,5 +1,7 @@
 package todolist;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -33,11 +35,24 @@ public class Controller {
 
         todoItems = new ArrayList<>(Arrays.asList(item1,item2,item3,item4,item5,item6));
 
+        todoListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TodoItem>() {
+            @Override
+            public void changed(ObservableValue<? extends TodoItem> observable, TodoItem oldValue, TodoItem newValue) {
+                if(newValue != null){
+                    TodoItem item = todoListView.getSelectionModel().getSelectedItem();
+                    itemDetailsTextArea.setText(item.getDetails());
+                    deadlineLabel.setText(item.getDeadLine().toString());
+
+                }
+            }
+        });
+
         todoListView.getItems().setAll(todoItems);
         todoListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         todoListView.getSelectionModel().selectFirst();
 
     }
+<<<<<<< HEAD
 
     @FXML
     public void handleItemClick(){
@@ -50,6 +65,18 @@ public class Controller {
 
 
     }
+=======
+//
+//    @FXML
+//    public void handleItemClick(){
+//        TodoItem item = todoListView.getSelectionModel().getSelectedItem();
+//
+//        itemDetailsTextArea.setText(item.getDetails());
+//
+//        deadlineLabel.setText(item.getDeadLine().toString());
+//
+//    }
+>>>>>>> b7b7ddb1420f28baebab8cca10730956f1e3e138
 
 
 }
