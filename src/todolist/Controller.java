@@ -42,7 +42,7 @@ public class Controller {
                 if(newValue != null){
                     TodoItem item = todoListView.getSelectionModel().getSelectedItem();
                     itemDetailsTextArea.setText(item.getDetails());
-                    DateTimeFormatter dTimeFormat = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+                    DateTimeFormatter dTimeFormat = DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy");
                     deadlineLabel.setText(dTimeFormat.format(item.getDeadLine()));
 
                 }
