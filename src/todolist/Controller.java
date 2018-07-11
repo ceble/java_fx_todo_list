@@ -10,6 +10,7 @@ import javafx.scene.control.TextArea;
 import todolist.datamodel.TodoItem;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -41,6 +42,7 @@ public class Controller {
                 if(newValue != null){
                     TodoItem item = todoListView.getSelectionModel().getSelectedItem();
                     itemDetailsTextArea.setText(item.getDetails());
+                    DateTimeFormatter df = DateTimeFormatter.ofPattern()
                     deadlineLabel.setText(item.getDeadLine().toString());
 
                 }
