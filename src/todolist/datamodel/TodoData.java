@@ -42,6 +42,9 @@ public class TodoData {
 
 
         } finally{
+            if(br != null){
+                br.close();
+            }
 
         }
 
