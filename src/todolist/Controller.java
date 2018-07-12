@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
+import todolist.datamodel.TodoData;
 import todolist.datamodel.TodoItem;
 
 import java.time.LocalDate;
@@ -35,6 +36,8 @@ public class Controller {
         TodoItem item6 = new TodoItem("6 First todo item", "6 This is details for the first item", LocalDate.of(2018,12,24));
 
         todoItems = new ArrayList<>(Arrays.asList(item1,item2,item3,item4,item5,item6));
+
+        TodoData.getInstance().setTodoItems(todoItems);
 
         todoListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TodoItem>() {
             @Override

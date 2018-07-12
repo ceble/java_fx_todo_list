@@ -3,12 +3,14 @@ package todolist.datamodel;
 import javafx.collections.FXCollections;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Iterator;
 import java.util.List;
 
 public class TodoData {
@@ -17,12 +19,12 @@ public class TodoData {
     private List<TodoItem> todoItems;
     private DateTimeFormatter formatter;
 
-    private static TodoData getInstance(){
+    public static TodoData getInstance() {
         return instance;
     }
 
-    private TodoData(){
-        formatter =DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    private TodoData() {
+        formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     }
 
     public List<TodoItem> getTodoItems() {
@@ -37,12 +39,11 @@ public class TodoData {
 
         todoItems = FXCollections.observableArrayList();
         Path path = Paths.get(filename);
-        BufferedReader br = Files.newBufferedReader(path);
 
         String input;
 
-        try{
-            while ((input = br.readLine())!= null){
+        try (BufferedReader br = Files.newBufferedReader(path)) {
+            while ((input = br.readLine()) != null) {
                 String[] itemPieces = input.split("\t");
 
                 String shortDescription = itemPieces[0];
@@ -54,16 +55,21 @@ public class TodoData {
 
                 todoItems.add(todoItem);
             }
-        } finally{
-            if(br != null){
-                br.close();
-            }
         }
     }
 
-    public void storeTodoItems(){
+    public void storeTodoItems() throws IOException {
+        Path path = Paths.get(filename);
 
+        try (BufferedWriter bw = Files.newBufferedWriter(path)) {
+
+            for (TodoItem item : todoItems) {
+                bw.write(String.format("%s\t%s\t%s",
+                        item.getShortDescription(),
+                        item.getDetails(),
+                        item.getDeadLine().format(formatter)));
+                bw.newLine();
+            }
+        }
     }
-
-
 }
