@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -38,16 +39,26 @@ public class TodoData {
         Path path = Paths.get(filename);
         BufferedReader br = Files.newBufferedReader(path);
 
+        String input;
+
         try{
+            while ((input = br.readLine())!= null){
+                String[] itemPieces = input.split("\t");
 
+                String shortDescription = itemPieces[0];
+                String details = itemPieces[1];
+                String dateString = itemPieces[2];
 
+                LocalDate deadLine = LocalDate.parse(dateString, formatter);
+                TodoItem todoItem = new TodoItem(shortDescription, details, deadLine);
+
+                todoItems.add(todoItem);
+            }
         } finally{
             if(br != null){
                 br.close();
             }
-
         }
-
     }
 
     public void storeTodoItems(){
